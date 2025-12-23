@@ -17,6 +17,15 @@ pipeline {
             }
         }
 
+        stage('Build Java Application') {
+            steps {
+                sh '''
+                mkdir -p bin
+                javac -d bin $(find src -name "*.java")
+                '''
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -25,7 +34,8 @@ pipeline {
                         sh """
                         ${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=banking \
-                        -Dsonar.sources=src
+                        -Dsonar.sources=src \
+                        -Dsonar.java.binaries=bin
                         """
                     }
                 }
