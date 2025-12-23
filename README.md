@@ -90,25 +90,3 @@ Azure Virtual Machines
 
 Ubuntu 20.04 LTS
 
-🏗️ Architecture
-VM	Purpose	Tools Installed
-VM1	CI/CD Server	Jenkins, SonarQube, Docker
-VM2	Kubernetes Node	Minikube, kubectl, Docker
-VM3	Monitoring Server	Prometheus, Grafana
-🔄 CI/CD Pipeline Workflow
-
-Developer pushes code to GitHub
-
-Jenkins pulls the latest source code
-
-SonarQube performs code quality analysis
-
-Docker image is built for the banking application
-
-Image is pushed to Docker Hub
-
-Kubernetes (Minikube) deploys the application
-
-Prometheus scrapes application metrics
-
-Grafana visualizes metrics on dashboards
