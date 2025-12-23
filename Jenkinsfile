@@ -46,7 +46,7 @@ pipeline {
                         ${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=banking \
                         -Dsonar.sources=src \
-                        -Dsonar.java.binaries=bin
+                        -Dsonar.exclusions=**/*.java
                         """
                     }
                 }
