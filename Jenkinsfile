@@ -20,8 +20,19 @@ pipeline {
         stage('Build Java Application') {
             steps {
                 sh '''
+                echo "Compiling Java source files..."
+                rm -rf bin
                 mkdir -p bin
                 javac -d bin $(find src -name "*.java")
+                '''
+            }
+        }
+
+        stage('Verify Compiled Classes') {
+            steps {
+                sh '''
+                echo "Verifying compiled .class files..."
+                ls -R bin
                 '''
             }
         }
@@ -70,6 +81,15 @@ pipeline {
                 kubectl apply -f banking-service.yaml
                 '''
             }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Pipeline completed successfully!"
+        }
+        failure {
+            echo "❌ Pipeline failed. Check logs for details."
         }
     }
 }
