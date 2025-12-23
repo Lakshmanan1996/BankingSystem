@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('SonarQube Analysis (Excluding Java)') {
             steps {
                 script {
                     def scannerHome = tool 'sonar-scanner'
