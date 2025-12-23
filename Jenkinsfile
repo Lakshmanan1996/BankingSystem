@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        stage('Build Java Application') {
+        /*stage('Build Java Application') {
             steps {
                 sh '''
                 echo "Compiling Java source files..."
@@ -35,7 +35,7 @@ pipeline {
                 ls -R bin
                 '''
             }
-        }
+        }*/
 
         stage('Build Docker Image') {
             steps {
