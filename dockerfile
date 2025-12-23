@@ -1,6 +1,3 @@
-# Old (invalid)
-FROM openjdk:17-jdk-slim
-
 # Fixed (valid)
 FROM openjdk:17-jdk-slim-bullseye
 
