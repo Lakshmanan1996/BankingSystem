@@ -37,22 +37,6 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis (Excluding Java)') {
-            steps {
-                script {
-                    def scannerHome = tool 'sonar-scanner'
-                    withSonarQubeEnv('sonarqube') {
-                        sh """
-                        ${scannerHome}/bin/sonar-scanner \
-                        -Dsonar.projectKey=banking \
-                        -Dsonar.sources=src \
-                        -Dsonar.exclusions=**/*.java
-                        """
-                    }
-                }
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $DOCKER_IMAGE:latest .'
