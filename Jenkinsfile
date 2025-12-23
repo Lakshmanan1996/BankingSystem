@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        /*stage('Build Java Application') {
+        stage('Build Java Application') {
             steps {
                 sh '''
                 echo "Compiling Java source files..."
@@ -35,7 +35,23 @@ pipeline {
                 ls -R bin
                 '''
             }
-        }*/
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonar-scanner'
+                    withSonarQubeEnv('sonarqube') {
+                        sh """
+                        ${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.projectKey=banking \
+                        -Dsonar.sources=src \
+                        -Dsonar.java.binaries=bin
+                        """
+                    }
+                }
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
